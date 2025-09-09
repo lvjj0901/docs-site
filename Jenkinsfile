@@ -27,5 +27,18 @@ pipeline{
                 }
             }
         }
+        stage('deploy'){
+            steps{
+                dir('.vitepress/dist'){
+                    sh 'ls -la'
+                    writeFile file: 'Dockerfile',
+                              text: '''From nginx ADD docs.tar.gz /ussr/share/html'''
+                    sh 'cat Dockerfile'
+                    sh 'docker build -f Dockerfile -t docs-app:latest .'
+                    sh 'docker rm -f app'
+                    sh 'docker run -d -p 80:80 --name app docs-app:latest'
+                }
+            }
+        }
     }
 }
