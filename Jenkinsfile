@@ -14,5 +14,18 @@ pipeline{
                 }
             }
         }
+        stage('artifact'){
+            steps{
+                dir('.vitepress/dist'){
+                    sh 'ls -la'
+                    sh 'tar -zcvf docs.tar.gz *'
+                    archiveArtifacts artifacts: 'docs.tar.gz',
+                                     allowEmptyArchive: true,
+                                     fingerprint: true,
+                                     onlyIfSuccessful: true
+                    sh 'ls -la'
+                }
+            }
+        }
     }
 }
