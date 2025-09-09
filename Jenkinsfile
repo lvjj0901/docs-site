@@ -3,16 +3,15 @@ pipeline{
     agent any
 
     stages{
-        stage("pull code"){
+        stage('build'){
             steps{
-                echo "pulling..."
-                sh "ls -la"
-            }
-        }
-        stage("build project"){
-            steps{
-                echo "building..."
-                sh "ls -ls"
+                withDockerContainer('node'){
+                    sh 'ls -la'
+                    sh 'node -v'
+                    sh 'npm install'
+                    sh 'npm run docs:build'
+                    sh 'ls .vitepress/'
+                }
             }
         }
     }
