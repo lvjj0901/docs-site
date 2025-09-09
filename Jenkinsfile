@@ -32,7 +32,8 @@ pipeline{
                 dir('.vitepress/dist'){
                     sh 'ls -la'
                     writeFile file: 'Dockerfile',
-                              text: '''From nginx ADD docs.tar.gz /usr/share/html'''
+                              text: '''FROM nginx
+                              ADD docs.tar.gz /usr/share/html'''
                     sh 'cat Dockerfile'
                     sh 'docker build -f Dockerfile -t docs-app:latest .'
                     sh 'docker rm -f app'
