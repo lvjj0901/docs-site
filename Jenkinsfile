@@ -33,7 +33,7 @@ pipeline{
                     sh 'ls -la'
                     writeFile file: 'Dockerfile',
                               text: '''FROM nginx
-                              ADD docs.tar.gz /usr/share/html'''
+                              ADD docs.tar.gz /usr/share/nginx/html'''
                     sh 'cat Dockerfile'
                     sh 'docker build -f Dockerfile -t docs-app:latest .'
                     sh 'docker rm -f app'
