@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: "Jason's project"
+  name: "俊杰的空间"
   text: "knowledge base"
   tagline: My great project tagline
   actions:
