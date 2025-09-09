@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: "俊杰的空间"
-  text: "knowledge base"
+  text: "知识库"
   tagline: My great project tagline
   actions:
     - theme: brand
